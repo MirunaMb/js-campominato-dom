@@ -25,7 +25,7 @@ QUANDO L'UTENTE CLICCA SU OGNI CELLA,LA CELLA CLICCATA SI COLORA DI AZZURO
 const button = document.getElementById('pulsante')
 const grid = document.getElementById('griglia')
 let choice = document.getElementById('select') // variabile legata al menu a tendina della difficolta
-
+let bombArray = []
 
 button.addEventListener('click', function () {
     const mode = choice.value; // modalita scelta dal menu a tendina
@@ -41,7 +41,7 @@ function generaGriglia(numberOfSquare) {
         Math.floor(Math.random() * (max - min + 1)) + min
 
 
-    let bombArray = []
+
     while (bombArray.length <= 15) {
         const randomBomb = generateRandomNumber(100, 1)
         if (!bombArray.includes(randomBomb)) {
@@ -67,11 +67,11 @@ function generaGriglia(numberOfSquare) {
                 this.classList.add('rosso');
                 // stampo punteggio utente
                 console.log(`Il tuo punteggio e : ${freeCell}`)
+                gameOver(index)
 
             } else {
                 // altrimenti
                 this.classList.add('azzuro');
-                // incremento punteggio utente
                 console.log(index);
                 freeCell--; // Decremento il numero di celle libere
             }
@@ -81,6 +81,15 @@ function generaGriglia(numberOfSquare) {
 
 }
 
+// Creo una funzione per gestire la fine del gioco
+function gameOver(index) {
+    if (bombArray.includes(index)) {
+        alert('Mi dispiace .HAI PERSO !')
+    } else {
+        alert('HAI VINTO!')
+    }
+
+}
 // Creo funzione che in base alla scelta dell'utente mi cambia anche il numero degli elementi della grid
 function regulationGrid(modeUser) {
     numberOfSquare = 0;
