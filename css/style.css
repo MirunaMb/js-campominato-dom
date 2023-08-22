@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#griglia{
+    background-color: blue;
+    width: 800px;
+    height: 800px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell{
+    width: calc(100% / 10);
+    aspect-ratio: 1;
+    background-color: yellow;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell-100 {
+    width: calc(100% / 10);
+}
+
+.cell-81 {
+    width: calc(100% / 9);
+}
+
+.cell-49 {
+    width: calc(100% / 7);
+}
+
+
+.azzuro{
+    background-color: azure;
+}
+.rosso{
+    background-color: red;
+}
