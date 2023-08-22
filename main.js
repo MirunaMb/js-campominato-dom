@@ -27,12 +27,14 @@ const grid = document.getElementById('griglia')
 let choice = document.getElementById('select') // variabile legata al menu a tendina della difficolta
 let bombArray = []
 
+// Una volta clickato il bottone si genera la griglia
 button.addEventListener('click', function () {
     const mode = choice.value; // modalita scelta dal menu a tendina
     const numberOfSquare = regulationGrid(mode) //richiamo la funzione per dare il numero di elementi della grid
     generaGriglia(numberOfSquare);
 
 })
+// La funzione della creazione della griglia
 function generaGriglia(numberOfSquare) {
     grid.innerHTML = '';
 
@@ -41,7 +43,7 @@ function generaGriglia(numberOfSquare) {
         Math.floor(Math.random() * (max - min + 1)) + min
 
 
-
+    // il ciclo che uso per identificare le bombe
     while (bombArray.length <= 15) {
         const randomBomb = generateRandomNumber(100, 1)
         if (!bombArray.includes(randomBomb)) {
@@ -50,14 +52,16 @@ function generaGriglia(numberOfSquare) {
     }
     console.log(bombArray)
     let freeCell = numberOfSquare - bombArray.length;
-    // punteggio utente = 0
+    // qui scopriamo il numere di celle rimaste libere
 
+    // il ciclo della cella
     for (let index = 1; index <= numberOfSquare; index++) {
         // creamo una cella
         const cell = document.createElement('div')
         cell.classList.add('cell');
         cell.classList.add('cell-' + numberOfSquare);
 
+        // Evento cella
         cell.addEventListener('click', function () {
             this.innerHTML = index;
 
@@ -76,6 +80,7 @@ function generaGriglia(numberOfSquare) {
                 freeCell--; // Decremento il numero di celle libere
             }
         })
+        // mettiamo dentro la cella che abbiamo fatto in Js e la inseriamo dentro il contenitore
         grid.append(cell)
     }
 
